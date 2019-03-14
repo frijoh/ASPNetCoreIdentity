@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASPNetCoreIdentity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190314082234_Initial")]
+    [Migration("20190314134033_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,6 +28,10 @@ namespace ASPNetCoreIdentity.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("Address");
+
+                    b.Property<string>("City");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -35,6 +39,10 @@ namespace ASPNetCoreIdentity.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -48,9 +56,13 @@ namespace ASPNetCoreIdentity.Migrations
 
                     b.Property<string>("PasswordHash");
 
+                    b.Property<string>("PersonalIdNumber");
+
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("PostalCode");
 
                     b.Property<string>("SecurityStamp");
 
