@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ASPNetCoreIdentity/.vs
+/ASPNetCoreIdentity/ASPNetCoreIdentity/bin/Debug/netcoreapp2.2
+/ASPNetCoreIdentity/ASPNetCoreIdentity/obj
+/ASPNetCoreIdentity/ASPNetCoreIdentity/wwwroot/lib/bootstrap
+/ASPNetCoreIdentity/ASPNetCoreIdentity/wwwroot/lib/jquery
+/ASPNetCoreIdentity/ASPNetCoreIdentity/wwwroot/lib/jquery-validation
+/ASPNetCoreIdentity/ASPNetCoreIdentity/wwwroot/lib/jquery-validation-unobtrusive
