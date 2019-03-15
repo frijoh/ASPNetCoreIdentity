@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ASPNetCoreIdentity.Models.AccountViewModels
 {
@@ -46,6 +42,7 @@ namespace ASPNetCoreIdentity.Models.AccountViewModels
 
         [Required]
         [Display(Name = "Postal Code")]
+        [StringLength(5, MinimumLength = 5, ErrorMessage = "Please enter postalcode")]
         public string PostalCode { get; set; }
 
         [Required]

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASPNetCoreIdentity.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using ASPNetCoreIdentity.Models.AccountViewModels;
 
 namespace ASPNetCoreIdentity.Controllers
 {
@@ -16,9 +18,10 @@ namespace ASPNetCoreIdentity.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Privacy()
         {
+            
             return View();
         }
 

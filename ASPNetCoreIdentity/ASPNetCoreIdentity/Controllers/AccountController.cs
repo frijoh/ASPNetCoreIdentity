@@ -69,13 +69,14 @@ namespace ASPNetCoreIdentity.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, FirstName = model.FirstName,
+                ApplicationUser user = new ApplicationUser { UserName = model.UserName, Email = model.Email, FirstName = model.FirstName,
                     LastName = model.LastName, Address = model.Address, PostalCode = model.PostalCode, City = model.City,
                     PersonalIdNumber = model.PersonalIdNumber };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    await _userManager.AddToRoleAsync(user, "Member");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
@@ -107,13 +108,32 @@ namespace ASPNetCoreIdentity.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                //ApplicationUser user = new ApplicationUser
+                //{
+                //    UserName = model.UserName,
+                    
+                //};
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToLocal(returnUrl);
+
+
+                    var tmpuser = await _userManager.FindByNameAsync(model.UserName/*Configuration.GetSection("AppSettings")["UserEmail"]*/);
+                    
+                    if (await _userManager.IsInRoleAsync(tmpuser, "Admin"))
+                    {
+                        return RedirectToAction("Privacy", "Home");
+                    }
+                    if(await _userManager.IsInRoleAsync(tmpuser, "Member"))
+                    {
+                        int i = 0;
+                    }
+
+                    return RedirectToAction("Index", "Home");
                 }
                 if (result.IsLockedOut)
                 {
